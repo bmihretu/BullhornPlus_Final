@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: head">
+
+</head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+
+<a style="margin:10px" href="/"><img width="45px" src="https://res.cloudinary.com/dmfaehjot/image/upload/v1564408391/Week7Challenge/9895_f6r8qm_wfowwh.svg" alt="go back image"/></a><br/>
+
+<!--Message Cards Start-->
+<div class="card">
+    <div class="card-header" th:text="${bullhorn.title}"></div>
+    <div class="card-body" >
+        <blockquote class="blockquote mb-0">
+            <p th:text="${bullhorn.content}"></p>
+            <img width="25%" th:src="${bullhorn.image}"/>
+            <footer>
+                <p class="blockquote-footer">Posted By: <span th:text="${bullhorn.postedBy}"></span> on <span th:text="${bullhorn.postedDate}"></span></p>
+            </footer>
+        </blockquote>
+    </div>
+    <hr/>
+    <div>
+        <a th:href="@{/delete/{id}(id=${bullhorn.id})}">Delete Message</a>
+    </div>
+</div>
+<!--Message Cards Ends-->
+
+
+<div th:replace="base :: javascript"></div>
+</body>
+</html>

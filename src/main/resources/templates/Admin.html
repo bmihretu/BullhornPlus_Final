@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: head"></head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+
+<h2>Admin Page!</h2>
+
+<table>
+    <th>User First Name</th>
+    <th>User Last Name</th>
+    <th>User Email</th>
+    <th>User Username</th>
+    <th>User Password</th>
+    <th>User Roles</th>
+    <th>Actions</th>
+    <div th:each="user : ${users}">
+        <tr >
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td>
+                <ul style="list-style-type: none;">
+                    <li th:each="role : ${user.getRoles()}">
+                        <p th:text="${role.getRole()}"></p>
+                    </li>
+                </ul>
+            </td>
+
+
+            <td><a th:href="@{/updateUser/{id}(id=${user.id})}">Update User</a></td>
+            <td><a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete User</a></td>
+
+        </tr>
+    </div>
+</table>
+
+
+<div th:replace="base :: javascript"></div>
+</body>
+</html>

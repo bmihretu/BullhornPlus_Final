@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: head"></head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+
+    <h3>Secure Page</h3>
+
+<h4>First Name</h4>
+<p th:text="${user.firstName}"></p>
+
+<h4>Last Name</h4>
+<p th:text="${user.lastName}"></p>
+
+<h4>Email</h4>
+<p th:text="${user.email}"></p>
+
+<h4>Username</h4>
+<p th:text="${user.username}"></p>
+
+<h4>Password</h4>
+<p th:text="${user.password}"></p>
+
+<h4>Roles</h4>
+<div th:each="role : ${user.getRoles()}">
+    <p th:text="${role.getRole()}"></p>
+</div>
+
+<a th:href="@{/updateUser/{id} (id=${user.id})}">Update Profile</a>
+
+<div th:replace="base :: javascript"></div>
+</body>
+</html>

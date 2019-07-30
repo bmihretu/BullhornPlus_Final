@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: head"></head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+
+<h4> User registration</h4>
+
+<form autocomplete="off" action="#" th:action="@{/processUser}" th:object="${user}" method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    First Name
+    <mark>
+        <strong>
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                    First Name Error
+                </span>
+        </strong>
+    </mark>
+    <input type="text" id="firstName" placeholder="First Name" th:field="*{firstName}"/><br/>
+
+    Last Name
+    <mark>
+        <strong>
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                    Last Name Error
+                </span>
+        </strong>
+    </mark>
+    <input type="text" id="lastName" placeholder="Last Name" th:field="*{lastName}"/><br/>
+
+    Email
+    <mark>
+        <strong>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                    Email Error
+                </span>
+        </strong>
+    </mark>
+    <input type="text" id="email" placeholder="Email" th:field="*{email}"/><br/>
+
+    Username
+    <mark>
+        <strong>
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+                    Username Error
+                </span>
+        </strong>
+    </mark>
+    <input type="text" id="username" placeholder="Username" th:field="*{username}"/><br/>
+
+    Password
+    <mark>
+        <strong>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                    Password Error
+                </span>
+        </strong>
+    </mark>
+    <input type="text" id="password" placeholder="Password" th:field="*{password}"/><br/>
+
+    Profile Image
+    <mark>
+        <strong>
+                <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}">
+                    Image URL Error
+                </span>
+        </strong>
+    </mark>
+    <input type="text" id="image" placeholder="Image URL" th:field="*{image}"/><br/>
+
+
+    <!--    <div sec:authorize="hasAuthority('ADMIN')">-->
+<!--    Roles-->
+
+<!--        ADMIN-->
+<!--        <input type="radio" value="ADMIN" id="admin" th:field="*{roles}"/><br/>-->
+
+<!--        User-->
+<!--        <input type="radio" value="USER" id="user" th:field="*{roles}"/><br/>-->
+<!--    </div>-->
+
+    <button type="submit" class="btn btn-default">Submit</button>
+
+</form>
+
+<div th:replace="base :: javascript"></div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: head"></head>
+<body >
+<nav th:replace="base :: navbar"></nav>
+
+
+<!--<div sec:authorize="isAuthenticated()" class="card float-left" style="width: 20%; height:60%; position:fixed">-->
+    <!--<img src="https://res.cloudinary.com/dmfaehjot/image/upload/v1564415256/Week7Challenge/noimage_hvn1ru.jpg" class="card-img-top" alt="User profile image">-->
+    <!--<div class="card-body">-->
+        <!--<p class="card-text" th:inline="text">-->
+            <!--First Name-->
+        <!--</p>-->
+        <!--<p class="card-text" th:inline="text">-->
+            <!--Last Name-->
+        <!--</p>-->
+        <!--<p class="card-text" th:inline="text">-->
+            <!--UserName-->
+        <!--</p>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div class="card width-70 float-right" th:each="bullhorn : ${messages}">
+    <div class="card-header" th:text="${bullhorn.title}"></div>
+    <div class="card-body" >
+        <blockquote class="blockquote mb-0">
+            <p th:text="${bullhorn.content}"></p>
+            <img width="25%" th:src="${bullhorn.image}"/>
+            <footer>
+                <p class="blockquote-footer">
+
+                    Posted By:
+                    <span th:unless="${bullhorn.postedBy == ''}" th:text="${bullhorn.postedBy}" ></span>
+                    on
+                    <span th:text="${bullhorn.postedDate}"></span>
+                </p>
+            </footer>
+        </blockquote>
+    </div>
+    <hr/>
+    <div>
+        <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/update/{id}(id=${bullhorn.id})}">Update</a>
+        <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/detail/{id}(id=${bullhorn.id})}">Details</a>
+        <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/delete/{id}(id=${bullhorn.id})}">Delete</a>
+    </div>
+</div>
+<!--Message Cards end-->
+
+<div th:replace="base :: javascript"></div>
+</body>
+</html>
