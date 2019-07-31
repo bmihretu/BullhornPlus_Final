@@ -1,5 +1,5 @@
 # Final Project - Bullhorn Plus
-## BLogify
+## (Blogify)
 
 ## Your application must include ALL of the  Bullhorn features and ONE feature of your choice from below:
 
