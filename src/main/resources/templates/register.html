@@ -5,7 +5,7 @@
     <title>New User Registration</title>
 </head>
 <body>
-    <h4>New User Registration</h4>
+<h4>New User Registration</h4>
 <form autocomplete="off"
       action = "#"
       th:action="@{/register}"
@@ -29,13 +29,24 @@
     <input type="text" id="email" placeholder="Email"
            th:field="*{email}"/><br/>
 
-   Username <mark><strong>
+    Hobbies <mark><strong>
+    <!--<div class="col-25">-->
+    <!--<label for="subject">Subject</label>-->
+    <!--</div>-->
+    <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    </div>
+</strong></mark>
+    </div>
+
+
+    Username <mark><strong>
     <span th:if="${#fields.hasErrors('username')}"
           th:errors="*{username}">Username Error</span></strong></mark>
     <input type="text" id="username" placeholder="Username"
            th:field="*{username}"/><br/>
 
-   Password <mark><strong>
+    Password <mark><strong>
     <span th:if="${#fields.hasErrors('password')}"
           th:errors="*{password}">Password Error</span></strong></mark>
     <input type="text" id="password" placeholder="Password"

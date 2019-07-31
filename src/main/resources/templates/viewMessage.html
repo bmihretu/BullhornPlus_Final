@@ -7,7 +7,7 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 
-<a style="margin:10px" href="/"><img width="45px" src="https://res.cloudinary.com/dmfaehjot/image/upload/v1564408391/Week7Challenge/9895_f6r8qm_wfowwh.svg" alt="go back image"/></a><br/>
+<a style="margin:10px" href="/"><img width="45px" src="https://res.cloudinary.com/daq1bxdgk/image/upload/v1564603205/36-512_qbk3gy.png" alt="go back image"/></a><br/>
 
 <!--Message Cards Start-->
 <div class="card">
@@ -15,9 +15,9 @@
     <div class="card-body" >
         <blockquote class="blockquote mb-0">
             <p th:text="${bullhorn.content}"></p>
-            <img width="25%" th:src="${bullhorn.image}"/>
+            <img width="35%" th:src="${bullhorn.image}"/>
             <footer>
-                <p class="blockquote-footer">Posted By: <span th:text="${bullhorn.postedBy}"></span> on <span th:text="${bullhorn.postedDate}"></span></p>
+                <p class="blockquote-footer">Posted  on <span th:text="${bullhorn.postedDate}"></span></p>
             </footer>
         </blockquote>
     </div>

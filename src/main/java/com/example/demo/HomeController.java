@@ -59,6 +59,9 @@ public class HomeController {
         return "login";
     }
 
+    @RequestMapping("/userProfile")
+    public String userProfile(){return "userProfile";}
+
 
     @GetMapping("/add")
     public String newMessage(Model model){
