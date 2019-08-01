@@ -4,6 +4,12 @@
 <head th:replace="base :: head"></head>
 <body >
 <nav th:replace="base :: navbar"></nav>
+<!--Cloudinary-->
+<a href="/add">Add an bullhorn</a>
+<div th:each="bullhorn : ${bullhorns}">
+    <div th:if="${bullhorn.image}" />
+    <>hr />
+</div>
 
 
 <!--<div sec:authorize="isAuthenticated()" class="card float-left" style="width: 20%; height:60%; position:fixed">-->
@@ -50,4 +56,3 @@
 
 <div th:replace="base :: javascript"></div>
 </body>
-</html>
