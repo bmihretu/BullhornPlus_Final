@@ -26,6 +26,8 @@ public class HomeController {
 
     @Autowired
     MessageRepository messageRepository;
+    @Autowired
+    CloudinaryConfig cloudc;
 
 
     //Home
