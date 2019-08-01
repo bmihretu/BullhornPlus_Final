@@ -1,65 +1,92 @@
 package com.example.demo;
+import com.cloudinary.Cloudinary;
 import com.cloudinary.Singleton;
 import com.cloudinary.Transformation;
-import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
 
-@Controller
-public class HomeControllerCloudinary {
+@Component
+public class CloudinaryConfig {
+    private Cloudinary cloudinary;
 
     @Autowired
-    MessageRepository messagesRepository;
-
-    @Autowired
-    CloudinaryConfig cloudc;
-      @Autowired
-    UserService userService;
-
-    @RequestMapping("/")
-    public String listMessages(Model model) {
-        model.addAttribute("messages", messagesRepository.findAll());
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
-        return "list";
+    public CloudinaryConfig(@Value("${cloud.key}") String key,
+                            @Value("${cloud.secret}") String secret,
+                            @Value("${cloud.name}") String cloud) {
+        cloudinary = Singleton.getCloudinary();
+        cloudinary.config.cloudName = cloud;
+        cloudinary.config.apiSecret = secret;
+        cloudinary.config.apiKey = key;
     }
 
-    @GetMapping("/add")
-    public String messageform(Model model) {
-        model.addAttribute("bullhorn", new Bullhorn());
-        return "messageform";
-    }
-
-
-    @PostMapping("/add")
-
-    public String processmessage(@ModelAttribute Bullhorn bullhorn,
-                                 @RequestParam("file") MultipartFile file)
-
-    {
-        if (file.isEmpty()) {
-            return "redirect;/add";
-        }
-        try
-
-        {
-            Map uploadResult = cloudc.upload(file.getBytes(),
-                    ObjectUtils.asMap("resourcetype", "auto"));
-            //bullhorn.setHeadshot(uploadResult.get("url").toString());
-            messagesRepository.save(bullhorn);
+    public Map upload(Object file, Map options) {
+        try {
+            return cloudinary.uploader().upload(file, options);
         } catch (IOException e) {
             e.printStackTrace();
-            return "redirect:/add";
-
+            return null;
         }
-        return "redirect:/";
+    }
+
+    /**
+     * This method generates the URL for the actor's list
+     */
+    public String createUrl(String name) {
+        return cloudinary
+                .url()
+                .transformation(new Transformation()
+                        .width(100)
+                        .height(100)
+                        .crop("fill")
+                        .radius(50)
+                        .gravity("face"))
+                .generate(name);
+    }
+
+    /**
+     * This method generates the URL for an image whose name is known and has been provided
+     */
+    public String createUrl(String name, int width, int height) {
+        return cloudinary
+                .url()
+                .transformation(new Transformation()
+                        .width(width)
+                        .height(height)
+                        .crop("fill")
+                        .radius(50)
+                        .gravity("face"))
+                .generate(name);
+
+    }
+
+    /**
+     * Creates a transformation from the URL provided
+     */
+    public String createSmallImage(String url, int width, int height) {
+        return cloudinary
+                .url()
+                .transformation(new Transformation()
+                        .width(width)
+                        .height(height)
+                        .crop("fill")
+                        .radius(50)
+                        .gravity("face"))
+                .type("fetch").generate(url);
+
+    }
+
+    public String createUrl(String name, int width, int height, String action) {
+        return cloudinary
+                .url()
+                .transformation(new Transformation()
+                        .width(width) //50
+                        .height(height)//50
+                        .border("2px_solid_black")
+                        .crop(action)) //thumb
+                .imageTag(name);//my message
     }
 }
