@@ -1,103 +1,70 @@
 package com.example.demo;
-
+import com.cloudinary.Singleton;
+import com.cloudinary.Transformation;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
-import java.security.Principal;
-
+import java.io.IOException;
+import java.util.Map;
 
 @Controller
-public class HomeController {
+public class HomeControllerCloudinary {
 
     @Autowired
-    UserRepository userRepository;
+    MessageRepository messagesRepository;
 
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    MessageRepository messageRepository;
     @Autowired
     CloudinaryConfig cloudc;
+      @Autowired
+    UserService userService;
 
-
-    //Home
     @RequestMapping("/")
-    public String index(Principal principal, Model model){
-        model.addAttribute("messages", messageRepository.findAll());
-        model.addAttribute("user", userRepository.findAll());
-        return "index";
-    }
-
-    @GetMapping("/register")
-    public String showRegistrationPage(Model model){
-        model.addAttribute("user",  new User());
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
-        model.addAttribute("user", user);
-        if (result.hasErrors()) {
-            return "register";
-        } else {
-            userService.saveUser(user);
-            model.addAttribute("message", "User Account Created");
+    public String listMessages(Model model) {
+        model.addAttribute("messages", messagesRepository.findAll());
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
         }
-        return "redirect:/login";
+        return "list";
     }
 
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
-
-
-    @GetMapping("/add")
-    public String newMessage(Model model){
-        model.addAttribute("bullhorn", new Bullhorn());
-        return "messageForm";
-    }
+//    @GetMapping("/add")
+//    public String messageform(Model model) {
+//        model.addAttribute("bullhorn", new Bullhorn());
+//        return "messageform";
+//    }
 
     @PostMapping("/process")
-    public String processMessage(@Valid Bullhorn bullhorn, @ModelAttribute("user") User user, BindingResult result, Model model){
-        if(result.hasErrors()){
-            return "messageForm";
+
+
+
+    public String processmessage(@ModelAttribute Bullhorn bullhorn,
+                                 @RequestParam("file") MultipartFile file)
+
+    {
+        if (file.isEmpty()) {
+            bullhorn.setUser(userService.getUser());
+            messagesRepository.save(bullhorn);
+            return "redirect:/";
         }
-        messageRepository.save(bullhorn);
-        Set<Bullhorn> messages = new HashSet<Bullhorn>();
-        messages.add(bullhorn);
-        user.setMessages(messages);
+        try
+
+        {
+            Map uploadResult = cloudc.upload(file.getBytes(),
+                    ObjectUtils.asMap("resourcetype", "auto"));
+
+            bullhorn.setImage(uploadResult.get("url").toString());
+            bullhorn.setUser(userService.getUser());
+            messagesRepository.save(bullhorn);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/add";
+
+        }
         return "redirect:/";
     }
-
-    @RequestMapping("/update/{id}")
-    public String updateMessage(@PathVariable("id") long id, Model model){
-        model.addAttribute("bullhorn", messageRepository.findById(id).get());
-        return "messageForm";
-    }
-
-    @RequestMapping("/detail/{id}")
-    public String viewMessage(@PathVariable("id") long id, Model model){
-        model.addAttribute("bullhorn", messageRepository.findById(id).get());
-        return "viewMessage";
-    }
-
-    @RequestMapping("/delete/{id}")
-    public String deleteMessage(@PathVariable("id") long id){
-        messageRepository.deleteById(id);
-        return "redirect:/";
-    }
-
-
-
 }
