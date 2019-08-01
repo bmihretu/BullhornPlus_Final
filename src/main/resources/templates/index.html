@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
-<head th:replace="base :: head"></head>
+<link rel="stylesheet" type= text/css href="css/style.css" >
+<head th:replace="base :: head">
+
+</head>
 <body >
 <nav th:replace="base :: navbar"></nav>
 
@@ -20,7 +23,11 @@
 <!--</p>-->
 <!--</div>-->
 <!--</div>-->
-
+<style>
+    body{
+        background-image: url("https://res.cloudinary.com/daq1bxdgk/image/upload/v1564680431/Untitled_design_1_coyi3k.png");
+    }
+</style>
 
 <div class="card width-70 float-right" th:each="bullhorn : ${messages}">
     <div class="card-header" th:text="${bullhorn.title}"></div>
@@ -46,12 +53,12 @@
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/delete/{id}(id=${bullhorn.id})}">Delete</a>
     </div>
 </div>
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Blogify 2019</p>
-    </div>
-    <!-- /.container -->
-</footer>
+<th:footer class="py-5 bg-dark">
+<div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Blogify 2019</p>
+</div>
+<!-- /.container -->
+</th:footer>
 <div th:replace="base :: javascript"></div>
 </body>
 

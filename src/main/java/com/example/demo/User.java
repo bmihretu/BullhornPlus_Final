@@ -28,14 +28,17 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
+    @Column(name="hobbies")
+    private String hobbies;
+
     @Column(name = "enabled")
     private boolean enabled;
 
     @Column(name = "username")
     private String username;
 
-    @Column(name = "image")
-    private String image;
+//    @Column(name = "image")
+//    private String image;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
@@ -49,14 +52,16 @@ public class User {
 
     }
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String image){
+//    String image
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String usernameeee){
         this.setEmail(email);
         this.setPassword(password);
         this.setFirstName(firstName);
         this.setLastName(lastName);
+        this.setHobbies(hobbies);
         this.setEnabled(enabled);
         this.setUsername(username);
-        this.setImage(image);
+//        this.setImage(image);
     }
 
     public long getId() {
@@ -133,11 +138,13 @@ public class User {
         this.messages = messages;
     }
 
-    public String getImage() {
-        return image;
-    }
+//    public String getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(String image) {
+//        this.image = image;
+//    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+    public void setHobbies(String hobbies) { this.hobbies = hobbies; }
 }
