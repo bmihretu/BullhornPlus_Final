@@ -1,33 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
-<link rel="stylesheet" type= text/css href="css/style.css" >
-<head th:replace="base :: head">
 
-</head>
-<body >
+<head th:replace="base :: head"></head>
+<body>
 <nav th:replace="base :: navbar"></nav>
 
-
-<!--<div sec:authorize="isAuthenticated()" class="card float-left" style="width: 20%; height:60%; position:fixed">-->
-<!--<img src="https://res.cloudinary.com/daq1bxdgk/image/upload/v1564589503/Blogify_4_kl4quk.png" class="card-img-top" alt="User profile image">-->
-<!--<div class="card-body">-->
-<!--<p class="card-text" th:inline="text">-->
-<!--First Name-->
-<!--</p>-->
-<!--<p class="card-text" th:inline="text">-->
-<!--Last Name-->
-<!--</p>-->
-<!--<p class="card-text" th:inline="text">-->
-<!--UserName-->
-<!--</p>-->
-<!--</div>-->
-<!--</div>-->
-<style>
-    body{
-        background-image: url("https://res.cloudinary.com/daq1bxdgk/image/upload/v1564680431/Untitled_design_1_coyi3k.png");
-    }
-</style>
 
 <div class="card width-70 float-right" th:each="bullhorn : ${messages}">
     <div class="card-header" th:text="${bullhorn.title}"></div>
@@ -53,12 +31,8 @@
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/delete/{id}(id=${bullhorn.id})}">Delete</a>
     </div>
 </div>
-<th:footer class="py-5 bg-dark">
-<div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Blogify 2019</p>
-</div>
-<!-- /.container -->
-</th:footer>
+
+<div th:replace="base :: footer"></div>
 <div th:replace="base :: javascript"></div>
 </body>
 
