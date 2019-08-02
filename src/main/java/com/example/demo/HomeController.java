@@ -36,8 +36,8 @@ public class HomeController {
 //    }
 
     @GetMapping("/register")
-    public String showRegistrationPage(Model model){
-        model.addAttribute("user",  new User());
+    public String showRegistrationPage(Model model) {
+        model.addAttribute("user", new User());
         return "register";
     }
 
@@ -54,11 +54,14 @@ public class HomeController {
     }
 
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
+
     @RequestMapping("/userProfile")
-    public String userProfile(){return "userProfile";}
+    public String userProfile() {
+        return "userProfile";
+    }
 
 
 //    @GetMapping("/add")
@@ -68,8 +71,8 @@ public class HomeController {
 //    }
 
     @PostMapping("/process")
-    public String processMessage(@Valid Bullhorn bullhorn, @ModelAttribute("user") User user, BindingResult result, Model model){
-        if(result.hasErrors()){
+    public String processMessage(@Valid Bullhorn bullhorn, @ModelAttribute("user") User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "messageForm";
         }
         messageRepository.save(bullhorn);
@@ -80,22 +83,27 @@ public class HomeController {
     }
 
     @RequestMapping("/update/{id}")
-    public String updateMessage(@PathVariable("id") long id, Model model){
+    public String updateMessage(@PathVariable("id") long id, Model model) {
         model.addAttribute("bullhorn", messageRepository.findById(id).get());
         return "messageForm";
     }
 
     @RequestMapping("/detail/{id}")
-    public String viewMessage(@PathVariable("id") long id, Model model){
+    public String viewMessage(@PathVariable("id") long id, Model model) {
         model.addAttribute("bullhorn", messageRepository.findById(id).get());
         return "viewMessage";
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteMessage(@PathVariable("id") long id){
+    public String deleteMessage(@PathVariable("id") long id) {
         messageRepository.deleteById(id);
         return "redirect:/";
     }
-
+    @RequestMapping("/view/{id}")
+    public String showMessage(@PathVariable("id") long id, Model model) {
+        model.addAttribute("bullhorn", messageRepository.findById(id).get());
+        return "show";
+    }
+}
 
 

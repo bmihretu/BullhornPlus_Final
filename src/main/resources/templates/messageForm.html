@@ -5,8 +5,8 @@
 
 <body>
 <nav th:replace="base :: navbar"></nav>
-//cloudinary Config
-<form method="POST" action="/add" th:object =${bullhorn}"
+<!--cloudinary Config-->
+<!--<form method="POST" action="/add" th:object =${bullhorn}"-->
       enctype="multipart/form-data">
     <form action="#" th:action="@{/process}" th:object="${bullhorn}" method="post">
         <input type="hidden" th:field="*{id}" />
@@ -24,8 +24,8 @@
             <label for="exampleFormControlInput3">Add an Image</label>
             <input type="text" value="blank" class="form-control" id="exampleFormControlInput3" placeholder="image url" th:field="*{image}"/>
         </div>
-        //cloudinary Config
-        <input type="file" name="file" /><br/><br>
+        <!--cloudinary Config-->
+        <!--<input type="file" name="file" /><br/><br>-->
         <input type="submit" value="Post"/>
     </form>
 </form>

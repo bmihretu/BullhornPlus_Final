@@ -50,6 +50,7 @@
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/update/{id}(id=${bullhorn.id})}">Update</a>
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/detail/{id}(id=${bullhorn.id})}">Details</a>
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/delete/{id}(id=${bullhorn.id})}">Delete</a>
+        <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/view/{id}(id=${bullhorn.id})}">view</a>
     </div>
 </div>
 <!--Message Cards end-->
