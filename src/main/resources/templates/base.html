@@ -8,7 +8,7 @@
     <title>Blogify</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" th:href="@{style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
 
 </head>
@@ -58,10 +58,8 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 </div>
-<footer th:fragment="footer" class="py-5 bg-dark">
-    <div class="footer-container">
+<footer th:fragment="footer">
         <p class="m-0 text-center text-white">Copyright &copy; Blogify 2019</p>
-    </div>
 </footer>
 </body>
 </html>

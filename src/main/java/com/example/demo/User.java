@@ -53,7 +53,7 @@ public class User {
     }
 
 //    String image
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String usernameeee){
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username){
         this.setEmail(email);
         this.setPassword(password);
         this.setFirstName(firstName);
@@ -137,7 +137,8 @@ public class User {
     public void setMessages(Set<Bullhorn> messages) {
         this.messages = messages;
     }
-
+    public void setHobbies(String hobbies) { this.hobbies = hobbies; }
+    public String getHobbies(){return hobbies;}
 //    public String getImage() {
 //        return image;
 //    }
@@ -146,5 +147,9 @@ public class User {
 //        this.image = image;
 //    }
 
-    public void setHobbies(String hobbies) { this.hobbies = hobbies; }
+
+
+    public String encode(String password) {
+        return password;
+    }
 }

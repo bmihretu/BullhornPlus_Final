@@ -21,15 +21,48 @@ public class DataLoader implements CommandLineRunner {
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
 
-        Role adminrole = roleRepository.findByRole(("ADMIN"));
         Role userRole = roleRepository.findByRole(("USER"));
+        Role adminrole = roleRepository.findByRole(("ADMIN"));
 
-//        User user = new User("jim@jim.com", "password", "jim", "jimmerson", true, "jim");
-//        user.setRoles(Arrays.asList(userRole));
+
+        User user = new User("jim@jim.com", "password", "jim", "jimmerson",true,"user");
+        user.setRoles(Arrays.asList(userRole));
+        userRepository.save(user);
+
+        user = new User ("admin@admin.com", "password", "Admin", "User", true, "admin");
+        user.setRoles(Arrays.asList(adminrole));
+        userRepository.save(user);
+
+//        User game = new User("gameofcodes@gmail.com",
+//                user.encode("password"),
+//                "Game",
+//                "Stevenson",
+//                true,
+//                "game");
 //        userRepository.save(user);
+
+//        User james = new User("james@gmail.com",
+//                user.encode("password"),
+//                "james",
+//                "Harden",
+//                true,
+//                "james");
+//        user.saveUser(james);
 //
-//        user = new User ("admin@admin.com", "password", "Admin", "User", true, "admin");
-//        user.setRoles(Arrays.asList(adminrole));
-//        userRepository.save(user);
+//        User jes = new User("jessica@yahoomail.com",
+//                user.encode("password"),
+//                "Jessica",
+//                "Ruler",
+//                true,
+//                "jes");
+//        user.saveUser(jes);
+//
+//        User admin = new User("admas@gmail.com",
+//                user.encode("password"),
+//                "Admas",
+//                "King",
+//                true,
+//                "admin");
+//        user.saveAdmin(admin);
     }
 }

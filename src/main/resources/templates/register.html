@@ -1,56 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<div>
     <meta charset="UTF-8">
     <title>New User Registration</title>
+    <div th:replace="base :: head"></div>
+</div>
 </head>
 <body>
+<nav th:replace="base :: navbar"></nav>
 <h4>New User Registration</h4>
 <form autocomplete="off"
-      action = "#"
+      action="#"
       th:action="@{/register}"
       th:object="${user}" method="post">
+    <div style="text-align: center" class="container">
+        First Name
+        <mark><strong>
+     <span th:if="${#fields.hasErrors('firstName')}"
+           th:errors="*{firstName}">First Name Error</span></strong></mark>
+        <input type="text" id="firstName" placeholder="First Name"
+               th:field="*{firstName}"/><br/>
+        Last Name
+        <mark><strong>
+     <span th:if="${#fields.hasErrors('lastName')}"
+           th:errors="*{lastName}">Last Name Error</span></strong></mark>
+        <input type="text" id="lastName" placeholder="Last Name"
+               th:field="*{lastName}"/><br>
+        Email
+        <mark><strong>
+      <span th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}">Email Error</span></strong></mark>
+        <input type="text" id="email" placeholder="Email"
+               th:field="*{email}"/><br/>
+        Hobbies
+        <mark><strong>
+            <span th:if="${#fields.hasErrors('hobbies')}"
+                  th:errors="*{hobbies}">Hobbies Error</span></strong></mark>
+            <input type="text" id="hobbies" name="hobbies" placeholder="Write something.."
+                   style="height:auto"
+                   th:field="*{hobbies}"/><br/>
 
-    First Name <mark><strong>
-    <span th:if="${#fields.hasErrors('firstName')}"
-          th:errors="*{firstName}">First Name Error</span></strong></mark>
-    <input type="text" id="firstName" placeholder="First Name"
-           th:field="*{firstName}"/><br/>
-
-    Last Name <mark><strong>
-    <span th:if="${#fields.hasErrors('lastName')}"
-          th:errors="*{lastName}">Last Name Error</span></strong></mark>
-    <input type="text" id="lastName" placeholder="Last Name"
-           th:field="*{lastName}"/><br/>
-
-    Email <mark><strong>
-    <span th:if="${#fields.hasErrors('email')}"
-          th:errors="*{email}">Email Error</span></strong></mark>
-    <input type="text" id="email" placeholder="Email"
-           th:field="*{email}"/><br/>
-
-    Hobbies <mark><strong>
-    <div class="col-75">
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
     </div>
-    </strong></mark>
     </div>
-
-
-    Username <mark><strong>
-    <span th:if="${#fields.hasErrors('username')}"
-          th:errors="*{username}">Username Error</span></strong></mark>
-    <input type="text" id="username" placeholder="Username"
-           th:field="*{username}"/><br/>
-
-    Password <mark><strong>
-    <span th:if="${#fields.hasErrors('password')}"
-          th:errors="*{password}">Password Error</span></strong></mark>
-    <input type="text" id="password" placeholder="Password"
-           th:field="*{password}"/><br/>
-
-    <button type="submit" class ="btn btn-default">Submit</button>
-
+    <div style="text-align: center" class="container">
+        Username
+        <mark><strong>
+         <span th:if="${#fields.hasErrors('username')}"
+               th:errors="*{username}">Username Error</span></strong></mark>
+        <input type="text" id="username" placeholder="Username"
+               th:field="*{username}"/><br/>
+        Password
+        <mark><strong>
+         <span th:if="${#fields.hasErrors('password')}"
+               th:errors="*{password}">Password Error</span></strong></mark>
+        <input type="text" id="password" placeholder="Password"
+               th:field="*{password}"/><br/>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </div>
 </form>
+<div th:replace="base :: javascript"></div>
 </body>
 </html>
