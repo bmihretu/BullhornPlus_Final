@@ -8,33 +8,27 @@
 //cloudinary Config
 <form method="POST" action="/add" th:object =${bullhorn}"
       enctype="multipart/form-data">
-<form action="#" th:action="@{/process}" th:object="${bullhorn}" method="post">
-    <input type="hidden" th:field="*{id}" />
-
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" th:field="*{title}"/>
-        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
-    </div>
-
-
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Content</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What do you want to say?" type="text" th:field="*{content}"></textarea>
-        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
-    </div>
-
-    <div class="form-group">
-        <label for="exampleFormControlInput3">Add an Image</label>
-        <input type="text" value="blank" class="form-control" id="exampleFormControlInput3" placeholder="image url" th:field="*{image}"/>
-    </div>
-    //cloudinary Config
-    <input type="file" name="file" /><br/><br>
-    <input type="submit" value="Post"/>
-
+    <form action="#" th:action="@{/process}" th:object="${bullhorn}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Title</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" th:field="*{title}"/>
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Content</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What do you want to say?" type="text" th:field="*{content}"></textarea>
+            <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput3">Add an Image</label>
+            <input type="text" value="blank" class="form-control" id="exampleFormControlInput3" placeholder="image url" th:field="*{image}"/>
+        </div>
+        //cloudinary Config
+        <input type="file" name="file" /><br/><br>
+        <input type="submit" value="Post"/>
+    </form>
 </form>
-</form>
-
 <div th:replace="base :: javascript"></div>
 </body>
 </html>
