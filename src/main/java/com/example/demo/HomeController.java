@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
-import java.security.Principal;
 
 
 @Controller
@@ -26,17 +25,15 @@ public class HomeController {
 
     @Autowired
     MessageRepository messageRepository;
-    @Autowired
-    CloudinaryConfig cloudc;
 
 
     //Home
-    @RequestMapping("/")
-    public String index(Principal principal, Model model){
-        model.addAttribute("messages", messageRepository.findAll());
-        model.addAttribute("user", userRepository.findAll());
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String index(Principal principal, Model model){
+//        model.addAttribute("messages", messageRepository.findAll());
+//        model.addAttribute("user", userRepository.findAll());
+//        return "index";
+//    }
 
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
@@ -60,13 +57,15 @@ public class HomeController {
     public String login(){
         return "login";
     }
+    @RequestMapping("/userProfile")
+    public String userProfile(){return "userProfile";}
 
 
-    @GetMapping("/add")
-    public String newMessage(Model model){
-        model.addAttribute("bullhorn", new Bullhorn());
-        return "messageForm";
-    }
+//    @GetMapping("/add")
+//    public String newMessage(Model model){
+//        model.addAttribute("bullhorn", new Bullhorn());
+//        return "messageForm";
+//    }
 
     @PostMapping("/process")
     public String processMessage(@Valid Bullhorn bullhorn, @ModelAttribute("user") User user, BindingResult result, Model model){
@@ -100,4 +99,3 @@ public class HomeController {
 
 
 
-}
