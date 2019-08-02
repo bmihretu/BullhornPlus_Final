@@ -1,6 +1,5 @@
 package com.example.demo;
-import com.cloudinary.Singleton;
-import com.cloudinary.Transformation;
+
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
 
@@ -20,7 +18,8 @@ public class HomeControllerCloudinary {
 
     @Autowired
     CloudinaryConfig cloudc;
-      @Autowired
+
+    @Autowired
     UserService userService;
 
     @RequestMapping("/")
@@ -29,16 +28,16 @@ public class HomeControllerCloudinary {
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
-        return "list";
+        return "index";
     }
 
-//    @GetMapping("/add")
-//    public String messageform(Model model) {
-//        model.addAttribute("bullhorn", new Bullhorn());
-//        return "messageform";
-//    }
+    @GetMapping("/add")
+    public String messageform(Model model) {
+        model.addAttribute("bullhorns", new Bullhorn());
+        return "messageForm";
+    }
 
-    @PostMapping("/process")
+    @PostMapping("/add")
 
 
 
