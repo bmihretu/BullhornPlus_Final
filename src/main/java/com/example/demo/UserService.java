@@ -52,6 +52,7 @@ public class UserService
         user.setEnabled(true);
         userRepository.save(user);
     }
+
     // create a getUser -cloudinary
     public User getUser(){
 
@@ -63,4 +64,7 @@ public class UserService
 
         return user;
     }
+
+
+
 }

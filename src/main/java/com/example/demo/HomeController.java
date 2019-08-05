@@ -45,10 +45,12 @@ public class HomeController {
 
     @PostMapping("/register")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+
         model.addAttribute("user", user);
         if (result.hasErrors()) {
             return "register";
         } else {
+            user.setHash(MD5Util.md5Hex(user.getEmail()));
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
         }
@@ -103,6 +105,7 @@ public class HomeController {
         messageRepository.deleteById(id);
         return "redirect:/";
     }
+
 
 
 
