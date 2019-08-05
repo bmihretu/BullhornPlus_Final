@@ -5,7 +5,10 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 
-    <h3>Secure Page</h3>
+<h3>Secure Page</h3>
+
+
+<!--GRAVATAR SHOULD BE STORED HERE-->
 
 <h4>First Name</h4>
 <p th:text="${user.firstName}"></p>
@@ -19,6 +22,9 @@
 <h4>Username</h4>
 <p th:text="${user.username}"></p>
 
+<h4>Hobbies</h4>
+<p th:text="${user.hobbies}"></p>
+
 <h4>Password</h4>
 <p th:text="${user.password}"></p>
 
@@ -29,6 +35,7 @@
 
 <a th:href="@{/updateUser/{id} (id=${user.id})}">Update Profile</a>
 
+<div th:replace="base :: footer"></div>
 <div th:replace="base :: javascript"></div>
 </body>
 </html>
