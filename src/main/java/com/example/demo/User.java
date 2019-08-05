@@ -40,6 +40,10 @@ public class User {
 //    @Column(name = "image")
 //    private String image;
 
+
+    @Column(name = "hash")
+    private String hash;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
@@ -47,6 +51,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Bullhorn> messages;
+
+
 
     public User(){
 
@@ -62,7 +68,20 @@ public class User {
         this.setEnabled(enabled);
         this.setUsername(username);
 //        this.setImage(image);
+
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String hash, String image) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enabled = enabled;
+        this.username = username;
+        this.image = image;
+        this.hash = hash;
+
     }
+
 
     public long getId() {
         return id;
@@ -152,4 +171,14 @@ public class User {
     public String encode(String password) {
         return password;
     }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+
+    public String getHash() {
+        return hash;
+    }
 }
+
