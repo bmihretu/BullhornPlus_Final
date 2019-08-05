@@ -37,8 +37,8 @@ public class User {
     @Column(name = "username")
     private String username;
 
-//    @Column(name = "image")
-//    private String image;
+    @Column(name = "image")
+    private String image;
 
 
     @Column(name = "hash")
@@ -59,14 +59,14 @@ public class User {
     }
 
 //    String image
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username){
-        this.setEmail(email);
-        this.setPassword(password);
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setHobbies(hobbies);
-        this.setEnabled(enabled);
-        this.setUsername(username);
+//    public User(String email, String password, String firstName, String lastName, boolean enabled, String username){
+//        this.setEmail(email);
+//        this.setPassword(password);
+//        this.setFirstName(firstName);
+//        this.setLastName(lastName);
+//        this.setHobbies(hobbies);
+//        this.setEnabled(enabled);
+//        this.setUsername(username);
 //        this.setImage(image);
 
 
@@ -158,13 +158,13 @@ public class User {
     }
     public void setHobbies(String hobbies) { this.hobbies = hobbies; }
     public String getHobbies(){return hobbies;}
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
 
