@@ -59,9 +59,11 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("/userProfile")
+    @GetMapping("/userProfile")
     public String userProfile(){return "userProfile";}
 
+    @PostMapping("/admin")
+    public String admin(){return "admin";}
 
     @GetMapping("/add")
     public String newMessage(Model model){

@@ -15,7 +15,7 @@
     You have been logged out
 </div>
 
-
+<div style="text-align: center" class="container">
 <form th:action="@{/login}" method="post">
     <div>
         <label>User name: <input type="text" name="username"/></label>
@@ -29,7 +29,7 @@
         <input type="submit" value="Sign In"/>
     </div>
 </form>
-
+</div>
 </div>
 <div th:replace="base :: footer"></div>
 <div th:replace="base :: javascript"></div>

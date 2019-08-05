@@ -2,11 +2,14 @@ package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+
+@EnableJpaRepositories
 @Component
 public class DataLoader implements CommandLineRunner {
     @Autowired
@@ -31,6 +34,10 @@ public class DataLoader implements CommandLineRunner {
 
         user = new User ("admin@admin.com", "password", "Admin", "User", true, "admin");
         user.setRoles(Arrays.asList(adminrole));
+        userRepository.save(user);
+
+        User bk = new User("bk@jim.com", "password", "bk", "bereket",true,"bk");
+        user.setRoles(Arrays.asList(userRole));
         userRepository.save(user);
 
 //        User game = new User("gameofcodes@gmail.com",

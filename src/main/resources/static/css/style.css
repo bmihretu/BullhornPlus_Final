@@ -44,7 +44,7 @@ hr {
 
 /* Set a style for the submit button */
 .registerbtn {
-    background-color: #4CAF50;
+    background-color: darkviolet;
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
@@ -57,6 +57,22 @@ hr {
 .registerbtn:hover {
     opacity: 1;
 }
+.loginbtn{
+    background-color: darkviolet;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.loginbtn:hover{
+    opacity: 1;
+}
+
+
 
 /* Add a blue text color to links */
 a {
