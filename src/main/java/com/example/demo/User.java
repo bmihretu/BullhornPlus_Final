@@ -58,19 +58,20 @@ public class User {
 
     }
 
-//    String image
-//    public User(String email, String password, String firstName, String lastName, boolean enabled, String username){
-//        this.setEmail(email);
-//        this.setPassword(password);
-//        this.setFirstName(firstName);
-//        this.setLastName(lastName);
-//        this.setHobbies(hobbies);
-//        this.setEnabled(enabled);
-//        this.setUsername(username);
-//        this.setImage(image);
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+        this.setEmail(email);
+        this.setPassword(password);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setHobbies(hobbies);
+        this.setEnabled(enabled);
+        this.setUsername(username);
+        this.setImage(image);
+    }
 
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String hash, String image) {
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String image, String hash) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
