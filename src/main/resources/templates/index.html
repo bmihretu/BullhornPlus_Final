@@ -16,22 +16,23 @@
             <footer>
                 <p class="blockquote-footer">
                     Posted By:
-                    <span th:unless="${bullhorn.postedBy == ''}" th:text="${bullhorn.postedBy}" ></span>
+                    <span th:text="${bullhorn.postedBy}" ></span>
                     on
+<!--                    th:unless="${bullhorn.postedBy == ''}"-->
                     <span th:text="${bullhorn.postedDate}"></span>
                 </p>
             </footer>
         </blockquote>
     </div>
-    <hr/>
+<!--    <hr/>-->
 
-    <div>
-        <div sec:authorize="hasAuthority('ADMIN')">
+<!--    <div th:if="*{bullhorn.getUser() == user }">-->
+<!--        <div sec:authorize="hasAuthority('ADMIN')">-->
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/update/{id}(id=${bullhorn.id})}">Update</a>
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/detail/{id}(id=${bullhorn.id})}">Details</a>
         <a sec:authorize="isAuthenticated()" class="side-by-side" th:href="@{/delete/{id}(id=${bullhorn.id})}">Delete</a>
-    </div>
-    </div>
+<!--    </div>-->
+<!--    </div>-->
 </div>
 
 <div th:replace="base :: footer"></div>

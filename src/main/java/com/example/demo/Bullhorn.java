@@ -1,9 +1,9 @@
 package com.example.demo;
-import java.util.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 public class Bullhorn {
@@ -28,6 +28,7 @@ public class Bullhorn {
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="user_id")
+
     private User user;
 
     public String getImage() {

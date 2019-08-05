@@ -1,3 +1,4 @@
+package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,9 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
-import java.security.Principal;
 
 
 @Controller
@@ -31,7 +32,8 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Principal principal, Model model){
         model.addAttribute("messages", messageRepository.findAll());
-        model.addAttribute("user", userRepository.findAll());
+        model.addAttribute("user", userService.getUser());
+
         return "index";
     }
 
@@ -59,7 +61,9 @@ public class HomeController {
     }
 
     @GetMapping("/userProfile")
-    public String userProfile(){return "userProfile";}
+    public String userProfile(Model model){
+        model.addAttribute("user", userService.getUser());
+        return "userProfile";}
 
     @PostMapping("/admin")
     public String admin(){return "admin";}

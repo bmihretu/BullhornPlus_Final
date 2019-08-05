@@ -6,22 +6,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Blogify</title>
+    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
 
 </head>
 <body>
-<div class="container">
-    <h2>Testing</h2>
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="https://res.cloudinary.com/daq1bxdgk/image/upload/v1564587997/Blogify_3_xzc2bo.png" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Welcome to Blogify. Register and post your content! </p>
+            </div>
+        </div>
+    </div>
 </div>
+<!--card-->
+<!--<div class="container">-->
+<!--    <h2>Testing</h2>-->
+<!--</div>-->
 
 <nav class="navbar navbar-light bg-white" th:fragment="navbar">
     <a class="navbar-brand" href="/">
         <img src="https://res.cloudinary.com/daq1bxdgk/image/upload/v1564589503/Blogify_4_kl4quk.png" width="100"
-             height="90" class="d-inline-block align-top" alt="Blogify">
-        <!--<span class="lumnari-fantasy">Bullhorn Blogspot</span>-->
+             height="60" class="d-inline-block align-top" alt="Blogify">
     </a>
 
     <h4 sec:authorize="isAuthenticated()" th:inline="text">Welcome <a
@@ -30,6 +43,7 @@
 
     <!--The user needs a certain role to see this link (ADMIN)-->
     <a sec:authorize="hasAuthority('ADMIN')" href="/admin">ADMIN Eyes Only</a>
+
     <!--Hide Register button from login page-->
     <div sec:authorize="isAnonymous()">
         <a href="/register"><button class="registerbtn"> Register</button></a>
@@ -38,6 +52,7 @@
     <!--If the user is not logged in this link will be visible-->
     <a sec:authorize="!isAuthenticated()" href="/login"><button class="loginbtn"> Login</button></a>
 
+
     <!--If the user is logged in this link will be visible-->
     <a sec:authorize="isAuthenticated()" href="/logout"><buttton>Logout</buttton></a>
 
@@ -45,6 +60,9 @@
                                                           src="https://res.cloudinary.com/daq1bxdgk/image/upload/v1564430098/_add_image-512_arcwo8.png"
                                                           alt="add image"/></a>
 </nav>
+
+
+
 
 
 <div th:fragment="javascript">
@@ -58,8 +76,8 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 </div>
-<footer th:fragment="footer">
-        <p class="m-0 text-center text-white">Copyright &copy; Blogify 2019</p>
+<footer th:fragment="footer" class="footer">
+        <p>Copyright &copy; Blogify 2019</p>
 </footer>
 </body>
 </html>

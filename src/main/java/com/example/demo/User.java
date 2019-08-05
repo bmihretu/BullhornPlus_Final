@@ -37,8 +37,8 @@ public class User {
     @Column(name = "username")
     private String username;
 
-//    @Column(name = "image")
-//    private String image;
+    @Column(name = "image")
+    private String image;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
@@ -61,7 +61,7 @@ public class User {
         this.setHobbies(hobbies);
         this.setEnabled(enabled);
         this.setUsername(username);
-//        this.setImage(image);
+        this.setImage(image);
     }
 
     public long getId() {
@@ -139,13 +139,13 @@ public class User {
     }
     public void setHobbies(String hobbies) { this.hobbies = hobbies; }
     public String getHobbies(){return hobbies;}
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
 
