@@ -106,6 +106,23 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @RequestMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findById(id).get());
+        return "updateUser";
+    }
+    @PostMapping("/updateUser")
+    public String processupdateUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "updateUser";
+        } else {
+//            user.setHash(MD5Util.md5Hex(user.getEmail()));
+            userService.saveUser(user);
+//            model.addAttribute("message", "User Account Created");
+        }
+        return "redirect:/";
+    }
 
 
 

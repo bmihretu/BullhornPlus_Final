@@ -8,37 +8,37 @@
 
 
 <!--GRAVATAR SHOULD BE STORED HERE-->
-<img src=https://www.gravatar.com/avatar/unknownhash
-     alt="picture of somebody"/>
 
-
-    <h3>Secure Page</h3>
-
-
-<h4>First Name</h4>
+    <h3 style="text-align: center" Secure Page></h3>
+<div class="container">
+<div class="card-body" >
+    <img src=https://www.gravatar.com/avatar/unknownhash
+         alt="picture of somebody"/>
+<h4 style="font-family:'Segoe Print'"> First Name</h4>
 <p th:text="${user.firstName}"></p>
 
-<h4>Last Name</h4>
+<h4 style="font-family: 'Segoe Print'">Last Name</h4>
 <p th:text="${user.lastName}"></p>
 
-<h4>Email</h4>
+<h4 style="font-family: 'Segoe Print'">Email</h4>
 <p th:text="${user.email}"></p>
 
-<h4>Username</h4>
+<h4 style="font-family: 'Segoe Print'">Username</h4>
 <p th:text="${user.username}"></p>
 
-<h4>Hobbies</h4>
+<h4 style="font-family: 'Segoe Print'">Hobbies</h4>
 <p th:text="${user.hobbies}"></p>
 
-<h4>Password</h4>
-<p th:text="${user.password}"></p>
+<!--<h4 style="font-family: 'Segoe Print'">Password</h4>-->
+<!--<p th:text="${user.password}"></p>-->
 
-<h4>Roles</h4>
+<h4 style="font-family: 'Segoe Print'">Roles</h4>
 <div th:each="role : ${user.getRoles()}">
     <p th:text="${role.getRole()}"></p>
 </div>
-
+</div>
 <a th:href="@{/updateUser/{id} (id=${user.id})}">Update Profile</a>
+</div>
 
 <div th:replace="base :: footer"></div>
 <div th:replace="base :: javascript"></div>

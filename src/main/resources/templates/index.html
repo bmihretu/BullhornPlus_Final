@@ -6,20 +6,20 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 
-
+<table>
 <div class="card width-70 float-right" th:each="bullhorn : ${messages}">
-    <div class="card-header" th:text="${bullhorn.title}"></div>
+    <tr><td> <div class="card-header" th:text="${bullhorn.title}"></div></td></tr>
     <div class="card-body">
         <blockquote class="blockquote mb-0">
-            <p th:text="${bullhorn.content}"></p>
+            <tr> <td><p th:text="${bullhorn.content}"></p></td></tr>
             <img width="25%" th:src="${bullhorn.image}"/>
             <footer>
                 <p class="blockquote-footer">
-                    Posted By:
-                    <span th:text="${bullhorn.postedBy}" ></span>
+                  <tr><td>  Posted By:
+                    <span th:text="${#authentication.name}" ></span>
                     on
 <!--                    th:unless="${bullhorn.postedBy == ''}"-->
-                    <span th:text="${bullhorn.postedDate}"></span>
+                      <span th:text="${bullhorn.postedDate}"></span></td></tr>
                 </p>
             </footer>
         </blockquote>
@@ -34,7 +34,7 @@
 <!--    </div>-->
 <!--    </div>-->
 </div>
-
+</table>
 <div th:replace="base :: footer"></div>
 <div th:replace="base :: javascript"></div>
 </body>
