@@ -6,6 +6,7 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -26,9 +27,8 @@
                         <footer>
                             <p class="blockquote-footer">
                                 Posted By:
-                                <span th:text="${bullhorn.postedBy}"></span>
+                                <span th:text="${#authentication.name}" ></span>
                                 on
-                                <!--                    th:unless="${bullhorn.postedBy == ''}"-->
                                 <span th:text="${bullhorn.postedDate}"></span>
                             </p>
                         </footer>
@@ -40,22 +40,47 @@
 
             </div>
         </div>
-    </div>
-</div>
 
-
-<!--<div>-->
-    <!--&lt;!&ndash;    <hr/>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    <div th:if="*{bullhorn.getUser() == user }">&ndash;&gt;-->
-    <!--&lt;!&ndash;        <div sec:authorize="hasAuthority('ADMIN')">&ndash;&gt;-->
-    <!---->
-    <!--&lt;!&ndash;    </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;    </div>&ndash;&gt;-->
-
+<!--<table>-->
+<!--<div class="card width-70 float-right" th:each="bullhorn : ${messages}">-->
+    <!--<tr><td> <div class="card-header" th:text="${bullhorn.title}"></div></td></tr>-->
+    <!--<div class="card-body">-->
+        <!--<blockquote class="blockquote mb-0">-->
+            <!--<tr> <td><p th:text="${bullhorn.content}"></p></td></tr>-->
+            <!--<img width="25%" th:src="${bullhorn.image}"/>-->
+            <!--<footer>-->
+                <!--<p class="blockquote-footer">-->
+                  <!--<tr><td>  -->
+                    <!--on-->
+<!--&lt;!&ndash;                    th:unless="${bullhorn.postedBy == ''}"&ndash;&gt;-->
+                      <!--<span th:text="${bullhorn.postedDate}"></span></td></tr>-->
+                <!--</p>-->
+            <!--</footer>-->
+        <!--</blockquote>-->
+<!--&gt;>>>>>> bb7d2ba5714db42d4f403e19c284c9868def2c0c-->
+    <!--</div>-->
 <!--</div>-->
+<!--<<<<<<< HEAD-->
+
+
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;    <hr/>&ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;&lt;!&ndash;    <div th:if="*{bullhorn.getUser() == user }">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;        <div sec:authorize="hasAuthority('ADMIN')">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;    </div>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;    </div>&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--=======-->
+    </div>
+    </div>
+</table>
+<!--&gt;>>>>>> bb7d2ba5714db42d4f403e19c284c9868def2c0c-->
 <div th:replace="base :: footer"></div>
 <div th:replace="base :: javascript"></div>
+
 </body>
 
 </html>
