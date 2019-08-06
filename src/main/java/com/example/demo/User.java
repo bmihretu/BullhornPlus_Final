@@ -37,8 +37,13 @@ public class User {
     @Column(name = "username")
     private String username;
 
-//    @Column(name = "image")
-//    private String image;
+    @Column(name = "image")
+    private String image;
+
+
+
+    @Column(name = "hash")
+    private String hash;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
@@ -48,12 +53,14 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Bullhorn> messages;
 
+
+
     public User(){
 
     }
 
-//    String image
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username){
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
         this.setEmail(email);
         this.setPassword(password);
         this.setFirstName(firstName);
@@ -61,8 +68,23 @@ public class User {
         this.setHobbies(hobbies);
         this.setEnabled(enabled);
         this.setUsername(username);
-//        this.setImage(image);
+        this.setImage(image);
+
     }
+
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String image, String hash) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enabled = enabled;
+        this.username = username;
+        this.image = image;
+        this.hash = hash;
+
+    }
+
 
     public long getId() {
         return id;
@@ -139,17 +161,27 @@ public class User {
     }
     public void setHobbies(String hobbies) { this.hobbies = hobbies; }
     public String getHobbies(){return hobbies;}
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
 
     public String encode(String password) {
         return password;
     }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+
+    public String getHash() {
+        return hash;
+    }
 }
+

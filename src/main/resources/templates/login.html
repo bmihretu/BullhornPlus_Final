@@ -1,34 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="https://www.thymeleaf.org">
 <head th:replace="base :: head"></head>
-<body>
+<body bgcolor="#cd5c5c">
+
 <nav th:replace="base :: navbar"></nav>
 
-<h1 style="text-align: center" Login Page></h1>
+<h1 Login Page style="text-align: center"></h1>
 
-<div th:if="${param.error}">
-    Invalid username or password
-</div>
 
-<div th:if="${param.logout}">
-    You have been logged out
-</div>
+<!--<div class="container" style="text-align: center">-->
+<!--    <form method="post" th:action="@{/login}">-->
+<!--        <div>-->
+<!--            <label>User name: <input name="username" type="text"/></label>-->
+<!--        </div>-->
 
-<div style="text-align: center" class="container">
-<form th:action="@{/login}" method="post">
-    <div>
-        <label>User name: <input type="text" name="username"/></label>
+<!--        <div>-->
+<!--            <label>Password: <input name="password" type="password"/></label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <input type="submit" value="Sign In"/>-->
+<!--        </div>-->
+<!--    </form>-->
+
+    <body>
+<!--    <div class="container">-->
+        <form method="post" th:action="@{/login}">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Sign In</h5>
+                        <form class="form-signin">
+
+                            <div class="form-label-group">
+                                <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                                <label for="inputUsername">Username</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <label for="inputPassword">Password</label>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block text-lowercase" type="submit">Sign In</button>
+                            <hr class="my-4">
+                            <div th:if="${param.error}">
+                                Invalid username or password. Try Again.
+                            </div>
+
+                            <div th:if="${param.logout}">
+                                You have been logged out
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </form>
+
     </div>
 
-    <div>
-        <label>Password: <input type="password" name="password"/></label>
-    </div>
+    </body>
 
-    <div>
-        <input type="submit" value="Sign In"/>
-    </div>
-</form>
+
 </div>
 </div>
 <div th:replace="base :: footer"></div>

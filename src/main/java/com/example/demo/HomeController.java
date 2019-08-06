@@ -32,7 +32,8 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Principal principal, Model model){
         model.addAttribute("messages", messageRepository.findAll());
-        model.addAttribute("user", userRepository.findAll());
+        model.addAttribute("user", userService.getUser());
+
         return "index";
     }
 
@@ -44,10 +45,12 @@ public class HomeController {
 
     @PostMapping("/register")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+
         model.addAttribute("user", user);
         if (result.hasErrors()) {
             return "register";
         } else {
+            user.setHash(MD5Util.md5Hex(user.getEmail()));
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
         }
@@ -60,7 +63,9 @@ public class HomeController {
     }
 
     @GetMapping("/userProfile")
-    public String userProfile(){return "userProfile";}
+    public String userProfile(Model model){
+        model.addAttribute("user", userService.getUser());
+        return "userProfile";}
 
     @PostMapping("/admin")
     public String admin(){return "admin";}
@@ -98,6 +103,24 @@ public class HomeController {
     @RequestMapping("/delete/{id}")
     public String deleteMessage(@PathVariable("id") long id){
         messageRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findById(id).get());
+        return "updateUser";
+    }
+    @PostMapping("/updateUser")
+    public String processupdateUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "updateUser";
+        } else {
+//            user.setHash(MD5Util.md5Hex(user.getEmail()));
+            userService.saveUser(user);
+//            model.addAttribute("message", "User Account Created");
+        }
         return "redirect:/";
     }
 
