@@ -1,6 +1,8 @@
 # Final Project - Bullhorn Plus
 ## (Blogify)
 
+#Heroku: https://blogifyversion.herokuapp.com/
+
 ##  application includes ALL of the Bullhorn features and:
 
 -Comments: Allow users to make comments on others posts. Users can also reply to comments.
